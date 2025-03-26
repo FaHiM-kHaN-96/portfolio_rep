@@ -17,32 +17,49 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #3b82f6;
+            --primary-color: #4f46e5;
+            --secondary-color: #3730a3;
+            --accent-color: #6366f1;
             --light-color: #f8fafc;
-            --dark-color: #1e293b;
+            --dark-color: #1e1b4b;
             --text-color: #334155;
+            --text-light: #64748b;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --border-radius: 12px;
         }
 
         body {
-            background-color: #f1f5f9;
+            background-color: #f8fafc;
             color: var(--text-color);
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         /* Header Styles */
         header {
             background: var(--gradient);
             color: white;
-            padding: 3rem 0;
+            padding: 4rem 0 6rem;
             text-align: center;
             position: relative;
             overflow: hidden;
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd' opacity='0.1'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 1;
         }
 
         .header-content {
@@ -56,13 +73,14 @@
         .profile-container {
             width: 180px;
             height: 180px;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 2rem;
             border-radius: 50%;
             overflow: hidden;
             border: 5px solid rgba(255, 255, 255, 0.3);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
             transition: var(--transition);
             position: relative;
+            background: white;
         }
 
         .profile-container::before {
@@ -84,12 +102,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(10%);
+            filter: grayscale(10%) contrast(1.05);
             transition: var(--transition);
         }
 
         .profile-container:hover .profile-img {
-            filter: grayscale(0%);
+            filter: grayscale(0%) contrast(1.1);
             transform: scale(1.05);
         }
 
@@ -98,6 +116,7 @@
             margin-bottom: 0.5rem;
             font-weight: 700;
             letter-spacing: -0.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .profession {
@@ -107,6 +126,10 @@
             font-weight: 300;
             position: relative;
             display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
         }
 
         .profession::after {
@@ -117,8 +140,9 @@
             transform: translateX(-50%);
             width: 50px;
             height: 3px;
-            background: var(--accent-color);
+            background: white;
             border-radius: 3px;
+            opacity: 0.7;
         }
 
         .social-links {
@@ -151,7 +175,7 @@
         /* Main Content */
         .container {
             max-width: 1200px;
-            margin: -3rem auto 3rem;
+            margin: -4rem auto 3rem;
             padding: 0 2rem;
             position: relative;
             z-index: 3;
@@ -159,17 +183,34 @@
 
         section {
             background: white;
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             padding: 2.5rem;
             margin-bottom: 2.5rem;
             transition: var(--transition);
             border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient);
+            transition: var(--transition);
         }
 
         section:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: var(--shadow-lg);
+        }
+
+        section:hover::before {
+            width: 8px;
         }
 
         h2 {
@@ -217,13 +258,14 @@
             gap: 0.5rem;
             font-weight: 500;
             border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-sm);
         }
 
         .skill:hover {
             background: var(--primary-color);
             color: white;
             transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
         }
 
         .skill i {
@@ -252,12 +294,13 @@
         .plan-card {
             background: white;
             padding: 2rem;
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             transition: var(--transition);
             border-left: 5px solid var(--primary-color);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .plan-card::before {
@@ -279,7 +322,7 @@
 
         .plan-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-lg);
         }
 
         .plan-icon {
@@ -287,6 +330,8 @@
             color: var(--primary-color);
             margin-bottom: 1.5rem;
             transition: var(--transition);
+            position: relative;
+            z-index: 1;
         }
 
         .plan-card:hover .plan-icon {
@@ -299,12 +344,13 @@
             font-size: 1.25rem;
             position: relative;
             z-index: 1;
+            color: var(--dark-color);
         }
 
         .plan-card p {
             position: relative;
             z-index: 1;
-            color: #64748b;
+            color: var(--text-light);
         }
 
         /* Contact Form */
@@ -338,7 +384,7 @@
         input:focus, textarea:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
             background: white;
         }
 
@@ -357,9 +403,10 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
             position: relative;
             overflow: hidden;
+            width: fit-content;
         }
 
         button::before {
@@ -379,7 +426,7 @@
 
         button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
         }
 
         button i {
@@ -395,15 +442,29 @@
             background: var(--dark-color);
             color: white;
             text-align: center;
-            padding: 3rem 0;
+            padding: 4rem 0 3rem;
             margin-top: 3rem;
             clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd' opacity='0.1'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 1;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         .footer-logo {
@@ -422,23 +483,41 @@
             justify-content: center;
             gap: 2rem;
             margin: 2rem 0;
+            flex-wrap: wrap;
         }
 
         .footer-link {
-            color: #94a3b8;
+            color: #a5b4fc;
             text-decoration: none;
             transition: var(--transition);
             font-weight: 500;
+            position: relative;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: var(--transition);
         }
 
         .footer-link:hover {
             color: white;
         }
 
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
         .copyright {
             opacity: 0.7;
             font-size: 0.9rem;
             margin-top: 2rem;
+            color: #a5b4fc;
         }
 
         /* Animations */
@@ -466,30 +545,6 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .plans-container {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.25rem; }
-            .profession { font-size: 1.1rem; }
-            .container { padding: 0 1.5rem; }
-            section { padding: 2rem; }
-            .plans-container { grid-template-columns: 1fr; }
-            footer { clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 100%); }
-        }
-
-        @media (max-width: 576px) {
-            header { padding: 2.5rem 0; clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }
-            .profile-container { width: 150px; height: 150px; }
-            h1 { font-size: 2rem; }
-            section { padding: 1.75rem; }
-            .footer-links { flex-direction: column; gap: 1rem; }
-        }
-
         /* Notification */
         .notification {
             position: fixed;
@@ -499,7 +554,7 @@
             color: white;
             padding: 1rem 1.5rem;
             border-radius: 8px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
             display: flex;
             align-items: center;
             gap: 0.75rem;
@@ -518,6 +573,68 @@
 
         .notification i {
             font-size: 1.25rem;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--shadow);
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .plans-container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.25rem; }
+            .profession { font-size: 1.1rem; }
+            .container { padding: 0 1.5rem; }
+            section { padding: 2rem; }
+            .plans-container { grid-template-columns: 1fr; }
+            footer { clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 100%); }
+            .footer-links { gap: 1.5rem; }
+        }
+
+        @media (max-width: 576px) {
+            header { padding: 3rem 0 5rem; clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }
+            .profile-container { width: 150px; height: 150px; }
+            h1 { font-size: 2rem; }
+            section { padding: 1.75rem; }
+            .footer-links { flex-direction: column; gap: 1rem; }
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
         }
     </style>
 </head>
@@ -558,7 +675,7 @@
             </div>
         </section>
 
-        <section class="animated delay-4">
+        <section class="animated delay-3">
             <h2>My Future Plans</h2>
             <p>I'm constantly evolving as a developer and have ambitious goals for my professional growth. Here's what I'm working towards in the coming years:</p>
             
@@ -596,33 +713,34 @@
             </div>
         </section>
 
-<section>
-    <h2>Get In Touch</h2>
-    <p>Have a project in mind or want to discuss opportunities? Feel free to reach out—I'm always open to interesting collaborations and conversations about technology.</p>
-    
-    <form class="contact-form" id="contactForm" action="send_email.php" method="POST">
-        <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" required placeholder="John Doe">
-        </div>
-        <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required placeholder="john@example.com">
-        </div>
-        <div class="form-group">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" required placeholder="Project Inquiry">
-        </div>
-        <div class="form-group">
-            <label for="message">Your Message</label>
-            <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project..."></textarea>
-        </div>
-        <button type="submit">
-            <span>Send Message</span>
-            <i class="fas fa-paper-plane"></i>
-        </button>
-    </form>
-</section>
+        <section class="animated delay-4">
+            <h2>Get In Touch</h2>
+            <p>Have a project in mind or want to discuss opportunities? Feel free to reach out—I'm always open to interesting collaborations and conversations about technology.</p>
+            
+            <form class="contact-form" id="contactForm" action="send_email.php" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required placeholder="Project Inquiry">
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project..."></textarea>
+                </div>
+                <button type="submit">
+                    <span>Send Message</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </section>
+    </div>
 
     <footer>
         <div class="footer-content">
@@ -639,7 +757,7 @@
                 <a href="https://twitter.com/yourhandle" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="https://www.instagram.com/md_fahim_rahman_khan/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-            <p class="copyright">© <?php echo date("Y"); ?> Enamul Hakim Khan. All rights reserved.</p>
+            <p class="copyright">© <span id="current-year">2023</span> Enamul Hakim Khan. All rights reserved.</p>
         </div>
     </footer>
 
@@ -648,8 +766,15 @@
         <span>Your message has been sent successfully!</span>
     </div>
 
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
         // Enhanced form handling with AJAX
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -675,6 +800,8 @@
                 if (data.success) {
                     // Show success notification
                     const notification = document.getElementById('notification');
+                    notification.querySelector('i').className = 'fas fa-check-circle';
+                    notification.querySelector('span').textContent = 'Your message has been sent successfully!';
                     notification.classList.add('show');
                     
                     // Hide after 5 seconds
@@ -687,7 +814,7 @@
                         title: 'Message Sent!',
                         text: 'Thank you for reaching out. I will get back to you soon.',
                         icon: 'success',
-                        confirmButtonColor: '#2563eb',
+                        confirmButtonColor: var(--primary-color),
                         confirmButtonText: 'Great!'
                     });
                     
@@ -751,6 +878,25 @@
             if (profileContainer) {
                 profileContainer.classList.add('floating');
             }
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
