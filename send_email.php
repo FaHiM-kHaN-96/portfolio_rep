@@ -33,8 +33,8 @@ try {
     $mail->isSMTP();
     $mail->Host = 'mail.fahim-khan-96.org';
     $mail->SMTPAuth = true;
-    $mail->Username = 'my_portfolio@fahim-khan-96.org';
-    $mail->Password = '=;4L@UEs!OYd';
+    $mail->Username = '';
+    $mail->Password = '';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
